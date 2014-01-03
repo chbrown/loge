@@ -1,0 +1,27 @@
+{
+  "name": "loge",
+  "version": "0.0.1",
+  "description": "Singleton logging with levels",
+  "keywords": [
+    "logger",
+    "logging",
+    "levels"
+  ],
+  "homepage": "https://github.com/chbrown/loge",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chbrown/loge.git"
+  },
+  "bugs": {
+    "email": "Christopher Brown <io@henrian.com>",
+    "url": "http://github.com/chbrown/loge/issues"
+  },
+  "license": "MIT",
+  "author": "Christopher Brown <io@henrian.com> (http://henrian.com)",
+  "devDependencies": {
+    "tap": "*"
+  },
+  "scripts": {
+    "test": "tap test"
+  }
+}
