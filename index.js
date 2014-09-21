@@ -31,8 +31,9 @@ Logger.prototype.set = function(opts) {
 };
 
 Object.defineProperty(Logger.prototype, 'level', {
-  /** logger.level returns a String if the current threshold (logger._level) has a matching name in Logger._levels.
-  Otherwise, returns the underlying Number representation.
+  /** logger.level returns a String if the current threshold (logger._level)
+  has a matching name in Logger._levels. Otherwise, returns the underlying
+  Number representation. Used as a setter, takes a number or a string (case-insensitive).
 
   If logger.level is set to a String that is not a key in Logger._levels, logger._level will default to 0.
   If logger.level is set to a Number, logger._level is set to exactly that value.
@@ -50,7 +51,7 @@ Object.defineProperty(Logger.prototype, 'level', {
       this._level = value;
     }
     else {
-      this._level = Logger._levels[value] || 0;
+      this._level = Logger._levels[value.toLowerCase()] || 0;
     }
   },
 });
