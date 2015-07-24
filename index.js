@@ -29,7 +29,7 @@ var Logger = (function () {
     }
     Logger.prototype.log = function (level, args) {
         if (level >= this.level) {
-            var text = util_1.format(args);
+            var text = util_1.format.apply(null, args);
             this.outputStream.write("[" + Level[level] + "] " + text + "\n");
         }
     };

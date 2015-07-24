@@ -36,7 +36,7 @@ export class Logger {
 
   log(level: Level, args: any[]) {
     if (level >= this.level) {
-      var text = format(args);
+      var text = format.apply(null, args);
       this.outputStream.write(`[${Level[level]}] ${text}\n`);
     }
   }
