@@ -1,92 +1,75 @@
-/*jslint node: true */
-var util = require('util');
+/// <reference path="type_declarations/DefinitelyTyped/node/node.d.ts" />
+var util_1 = require('util');
+// Level is a mapping from level names (strings) to level values (numbers)
+(function (Level) {
+    Level[Level["notset"] = 0] = "notset";
+    Level[Level["debug"] = 10] = "debug";
+    Level[Level["info"] = 20] = "info";
+    Level[Level["warning"] = 30] = "warning";
+    Level[Level["error"] = 40] = "error";
+    Level[Level["critical"] = 50] = "critical";
+})(exports.Level || (exports.Level = {}));
+var Level = exports.Level;
+/**
+new Logger(<Stream-like Object>, <Number|String>);
 
-var Logger = function() {
-  /** Logger
+logger.stream: Stream-like object implementing .write(string)
+  E.g., any stream.Writable, like `process.stderr`
 
-  this._level is always a Number (default: 0)
-  It is set via this.level, as either a string (resolved using Logger._levels) or integer.
-
-  this.stream should implement .write(string), like any instance of stream.Writable (default: process.stderr)
-
-  Logger._levels is a mapping from level names (Strings) to level values (Numbers).
-
-  */
-  this._level = 0;
-  this.stream = process.stderr;
-};
-Logger.prototype.set = function(opts) {
-  /** Little configuration helper so that you can write:
-
-  var logger = require('loge').set({level: 'warn'});
-  */
-  if (opts.level !== undefined) {
-    // call the setter:
-    this.level = opts.level;
-  }
-  if (opts.stream !== undefined) {
-    this.stream = opts.stream;
-  }
-  return this;
-};
-
-Object.defineProperty(Logger.prototype, 'level', {
-  /** logger.level returns a String if the current threshold (logger._level)
-  has a matching name in Logger._levels. Otherwise, returns the underlying
-  Number representation. Used as a setter, takes a number or a string (case-insensitive).
-
-  If logger.level is set to a String that is not a key in Logger._levels, logger._level will default to 0.
-  If logger.level is set to a Number, logger._level is set to exactly that value.
-  */
-  get: function() {
-    for (var level_name in Logger._levels) {
-      if (Logger._levels[level_name] == this._level) {
-        return level_name;
-      }
+logger._level: Number
+  It is set via logger.level, as either a String (resolved using
+  Logger._levels) or Number
+*/
+var Logger = (function () {
+    function Logger(outputStream, level) {
+        if (outputStream === void 0) { outputStream = process.stderr; }
+        if (level === void 0) { level = Level.notset; }
+        this.outputStream = outputStream;
+        this.level = level;
     }
-    return this._level;
-  },
-  set: function(value) {
-    if (typeof(value) == 'number') {
-      this._level = value;
-    }
-    else {
-      this._level = Logger._levels[value.toLowerCase()] || 0;
-    }
-  },
-});
-
-Object.defineProperty(Logger, 'levels', {
-  get: function() {
-    return this._levels;
-  },
-  set: function(levels) {
-    this._levels = levels;
-    // and add the helper functions:
-    Object.keys(levels).forEach(function(level_name) {
-      var level_value = levels[level_name];
-      Logger.prototype[level_name] = function(/* arguments */) {
-        // `this` will be bound as the Logger instance
-        if (level_value >= this._level) {
-          // var args = arguments; // Array.prototype.slice(arguments);
-          var text = util.format.apply(null, arguments);
-          this.stream.write('[' + level_name + '] ' + text + '\n');
+    Logger.prototype.log = function (level, args) {
+        if (level >= this.level) {
+            var text = util_1.format(args);
+            this.outputStream.write("[" + Level[level] + "] " + text + "\n");
         }
-      };
-    });
-  },
-});
-// set defaults
-Logger.levels = {
-  // for keys with the same value, the first key is canonical
-  silly: 5,
-  debug: 10,
-  verbose: 10,
-  info: 20,
-  warn: 30,
-  warning: 30,
-  error: 40,
-  critical: 50,
-};
-
-module.exports = new Logger();
+    };
+    Logger.prototype.debug = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i - 0] = arguments[_i];
+        }
+        return this.log(Level.debug, args);
+    };
+    Logger.prototype.info = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i - 0] = arguments[_i];
+        }
+        return this.log(Level.info, args);
+    };
+    Logger.prototype.warning = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i - 0] = arguments[_i];
+        }
+        return this.log(Level.warning, args);
+    };
+    Logger.prototype.error = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i - 0] = arguments[_i];
+        }
+        return this.log(Level.error, args);
+    };
+    Logger.prototype.critical = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i - 0] = arguments[_i];
+        }
+        return this.log(Level.critical, args);
+    };
+    return Logger;
+})();
+exports.Logger = Logger;
+exports.logger = new Logger();
+//// }
