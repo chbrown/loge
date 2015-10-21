@@ -1,4 +1,3 @@
-/// <reference path="type_declarations/DefinitelyTyped/node/node.d.ts" />
 var util_1 = require('util');
 // Level is a mapping from level names (strings) to level values (numbers)
 (function (Level) {
@@ -72,4 +71,3 @@ var Logger = (function () {
 })();
 exports.Logger = Logger;
 exports.logger = new Logger();
-//// }

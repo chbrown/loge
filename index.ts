@@ -1,8 +1,4 @@
-/// <reference path="type_declarations/DefinitelyTyped/node/node.d.ts" />
-
 import {format} from 'util';
-
-//// export module loge {
 
 export interface Writable {
   write(str: string): boolean;
@@ -59,5 +55,3 @@ export class Logger {
 }
 
 export var logger = new Logger();
-
-//// }

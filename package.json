@@ -8,11 +8,13 @@
     "levels"
   ],
   "homepage": "https://github.com/chbrown/loge",
-  "repository": "git://github.com/chbrown/loge.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chbrown/loge.git"
+  },
   "author": "Christopher Brown <io@henrian.com> (http://henrian.com)",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "*"
-  },
-  "typings": "loge.d.ts"
+    "typescript": "next"
+  }
 }
