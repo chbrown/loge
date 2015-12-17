@@ -1,12 +1,12 @@
 import {format} from 'util';
 
-export interface Writable {
-  write(str: string): boolean;
-}
-
+// these shims let avoid NodeJS dependencies in the .d.ts output
+export interface Writable { write(str: string): boolean; }
 declare var process: {stderr: Writable};
 
-// Level is a mapping from level names (strings) to level values (numbers)
+/**
+Level is a mapping from level names (strings) to level values (numbers)
+*/
 export enum Level {
   notset = 0,
   debug = 10,
@@ -16,17 +16,16 @@ export enum Level {
   critical = 50,
 }
 
-/**
-new Logger(<Stream-like Object>, <Number|String>);
-
-logger.stream: Stream-like object implementing .write(string)
-  E.g., any stream.Writable, like `process.stderr`
-
-logger._level: Number
-  It is set via logger.level, as either a String (resolved using
-  Logger._levels) or Number
-*/
 export class Logger {
+  /**
+  Create a new Logger instance.
+
+  logger.stream:
+  @param {WritableStream} Stream-like object implementing .write(string), E.g.,
+         any stream.Writable, like `process.stderr`
+  @param {number} level Numeric log level indicating the minimum severity of
+         messages to write to the output.
+  */
   constructor(public outputStream: Writable = process.stderr,
               public level: Level = Level.notset) { }
 

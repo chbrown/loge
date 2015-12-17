@@ -1,5 +1,7 @@
 var util_1 = require('util');
-// Level is a mapping from level names (strings) to level values (numbers)
+/**
+Level is a mapping from level names (strings) to level values (numbers)
+*/
 (function (Level) {
     Level[Level["notset"] = 0] = "notset";
     Level[Level["debug"] = 10] = "debug";
@@ -9,17 +11,16 @@ var util_1 = require('util');
     Level[Level["critical"] = 50] = "critical";
 })(exports.Level || (exports.Level = {}));
 var Level = exports.Level;
-/**
-new Logger(<Stream-like Object>, <Number|String>);
-
-logger.stream: Stream-like object implementing .write(string)
-  E.g., any stream.Writable, like `process.stderr`
-
-logger._level: Number
-  It is set via logger.level, as either a String (resolved using
-  Logger._levels) or Number
-*/
 var Logger = (function () {
+    /**
+    Create a new Logger instance.
+  
+    logger.stream:
+    @param {WritableStream} Stream-like object implementing .write(string), E.g.,
+           any stream.Writable, like `process.stderr`
+    @param {number} level Numeric log level indicating the minimum severity of
+           messages to write to the output.
+    */
     function Logger(outputStream, level) {
         if (outputStream === void 0) { outputStream = process.stderr; }
         if (level === void 0) { level = Level.notset; }
