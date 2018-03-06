@@ -1,5 +1,7 @@
 ## loge
 
+[![latest version published to npm](https://badge.fury.io/js/loge.svg)](https://www.npmjs.com/package/loge)
+
 My very own Node.js logging library! Crazy that no one else thought of this first!
 
 ```sh
@@ -63,4 +65,5 @@ console.log(Level.critical);
 
 ### License
 
-Copyright © 2014-2015 Christopher Brown. [MIT Licensed](http://chbrown.github.io/licenses/MIT/#2014-2015).
+Copyright © 2014-2015 Christopher Brown.
+[MIT Licensed](https://chbrown.github.io/licenses/MIT/#2014-2015).
