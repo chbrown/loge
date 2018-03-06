@@ -14,21 +14,21 @@ npm install --save loge
 The singleton `Logger` instance defaults to writing to `process.stderr`.
 
 ```js
-import {logger, Level} from 'loge';
+import {logger, Level} from 'loge'
 
-logger.level = Level.error;
-logger.warning('You should probably get a doctor to look at that.');
+logger.level = Level.error
+logger.warning('You should probably get a doctor to look at that.')
 // (nothing)
-logger.critical('OMG your face I you what no really just does it hurt?');
+logger.critical('OMG your face I you what no really just does it hurt?')
 // [critical] OMG your face I you what no really just does it hurt?
 ```
 
 Alternatively, write to `process.stdout`:
 
 ```js
-import {Logger, Level} from 'loge';
+import {Logger, Level} from 'loge'
 
-const logger = new Logger(process.stdout, Level.info);
+const logger = new Logger(process.stdout, Level.info)
 ```
 
 
@@ -46,19 +46,19 @@ Use `%%` for an escaped percent sign
 ### Levels
 
 ```js
-import {Level} from 'loge';
+import {Level} from 'loge'
 
-console.log(Level.notset);
+console.log(Level.notset)
 // 0
-console.log(Level.debug);
+console.log(Level.debug)
 // 10
-console.log(Level.info);
+console.log(Level.info)
 // 20
-console.log(Level.warning);
+console.log(Level.warning)
 // 30
-console.log(Level.error);
+console.log(Level.error)
 // 40
-console.log(Level.critical);
+console.log(Level.critical)
 // 50
 ```
 
