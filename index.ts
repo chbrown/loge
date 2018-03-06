@@ -32,7 +32,7 @@ export class Logger {
 
   log(level: Level, args: any[]) {
     if (level >= this.level) {
-      var text = format.apply(null, args);
+      const text = format.apply(null, args);
       this.outputStream.write(`[${Level[level]}] ${text}\n`);
     }
   }
@@ -54,4 +54,4 @@ export class Logger {
   }
 }
 
-export var logger = new Logger();
+export const logger = new Logger();
