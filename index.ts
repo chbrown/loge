@@ -20,14 +20,13 @@ export enum Level {
 
 export class Logger {
   /**
-  Create a new Logger instance.
-
-  logger.stream:
-  @param {WritableStream} Stream-like object implementing .write(string), E.g.,
-         any stream.Writable, like `process.stderr`
-  @param {number} level Numeric log level indicating the minimum severity of
-         messages to write to the output.
-  */
+   * Create a new Logger instance.
+   *
+   * @param outputStream Stream-like object implementing .write(string).
+   *        E.g., `process.stderr`.
+   * @param level Numeric log level indicating the minimum severity of
+   *        messages to write to outputStream.
+   */
   constructor(public outputStream: WritableStream = process.stderr,
               public level: Level = Level.notset) { }
 
