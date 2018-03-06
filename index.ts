@@ -1,8 +1,10 @@
 import {format} from 'util';
 
-// these shims let avoid NodeJS dependencies in the .d.ts output
-export interface Writable { write(str: string): boolean; }
-declare var process: {stderr: Writable};
+/** Structural subset of NodeJS.WritableStream required for logging */
+export interface WritableStream {
+  write(buffer: Buffer | string, cb?: Function): boolean;
+  write(str: string, encoding?: string, cb?: Function): boolean;
+}
 
 /**
 Level is a mapping from level names (strings) to level values (numbers)
@@ -26,7 +28,7 @@ export class Logger {
   @param {number} level Numeric log level indicating the minimum severity of
          messages to write to the output.
   */
-  constructor(public outputStream: Writable = process.stderr,
+  constructor(public outputStream: WritableStream = process.stderr,
               public level: Level = Level.notset) { }
 
   log(level: Level, args: any[]) {
