@@ -1,9 +1,9 @@
-import {format} from 'util';
+import {format} from 'util'
 
 /** Structural subset of NodeJS.WritableStream required for logging */
 export interface WritableStream {
-  write(buffer: Buffer | string, cb?: Function): boolean;
-  write(str: string, encoding?: string, cb?: Function): boolean;
+  write(buffer: Buffer | string, cb?: Function): boolean
+  write(str: string, encoding?: string, cb?: Function): boolean
 }
 
 /**
@@ -32,26 +32,26 @@ export class Logger {
 
   log(level: Level, args: any[]) {
     if (level >= this.level) {
-      const text = format.apply(null, args);
-      this.outputStream.write(`[${Level[level]}] ${text}\n`);
+      const text = format.apply(null, args)
+      this.outputStream.write(`[${Level[level]}] ${text}\n`)
     }
   }
 
   debug(...args: any[]): void {
-    return this.log(Level.debug, args);
+    return this.log(Level.debug, args)
   }
   info(...args: any[]): void {
-    return this.log(Level.info, args);
+    return this.log(Level.info, args)
   }
   warning(...args: any[]): void {
-    return this.log(Level.warning, args);
+    return this.log(Level.warning, args)
   }
   error(...args: any[]): void {
-    return this.log(Level.error, args);
+    return this.log(Level.error, args)
   }
   critical(...args: any[]): void {
-    return this.log(Level.critical, args);
+    return this.log(Level.critical, args)
   }
 }
 
-export const logger = new Logger();
+export const logger = new Logger()
